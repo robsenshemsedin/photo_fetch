@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:photo_fetch/enums/enums.dart';
 import 'package:photo_fetch/models/photo_model.dart';
-import 'package:photo_fetch/resources/app_sizes.dart';
 import 'package:photo_fetch/resources/resources.dart';
 import 'package:photo_fetch/widgets/widgets.dart';
 
@@ -28,7 +26,9 @@ class _AddPhotoState extends State<AddPhoto> {
   @override
   void initState() {
     photo = Photo(
-        title: imageTitleController.text, url: imageUrlController.text, id: 1);
+      title: imageTitleController.text,
+      url: imageUrlController.text,
+    );
     super.initState();
   }
 

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:photo_fetch/models/photo_model.dart';
-import 'package:photo_fetch/resources/app_styles.dart';
+import 'package:photo_fetch/models/models.dart';
 import 'package:photo_fetch/resources/resources.dart';
 import 'package:photo_fetch/services/services.dart';
 import 'package:photo_fetch/widgets/widgets.dart';
@@ -30,10 +29,10 @@ class _PostPageState extends State<PostPage> {
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             return ListView.builder(
-                itemCount: snapshot.data!.length,
+                itemCount: 5,
                 itemBuilder: ((context, index) {
                   return PhotoCard(
-                    photo: snapshot.data![index],
+                    photo: snapshot.data!.reversed.toList()[index],
                   );
                 }));
           } else if (snapshot.hasError) {
@@ -94,16 +93,21 @@ class _PostPageState extends State<PostPage> {
                     ],
                   ),
                 ),
-                AddPhoto(addPhoto: (Photo photo) {
-                  debugPrint(photo.title);
-                  debugPrint(photo.url);
-                  Navigator.pop(context);
-                })
+                AddPhoto(addPhoto: addPhoto)
               ],
             ),
           ),
         );
       },
     );
+  }
+
+  Future<void> addPhoto(Photo photo) async {
+    FetchPhoto.addPhoto(photo);
+    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+      content: Text(AppStrings.snackBarMessage),
+      backgroundColor: Colors.green,
+    ));
+    Navigator.pop(context);
   }
 }

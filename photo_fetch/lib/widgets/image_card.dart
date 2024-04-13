@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:photo_fetch/enums/enums.dart';
-import 'package:photo_fetch/models/photo_model.dart';
+import 'package:photo_fetch/models/models.dart';
 import 'package:photo_fetch/resources/resources.dart';
+import 'package:photo_fetch/services/services.dart';
 import 'package:photo_fetch/widgets/widgets.dart';
 
 class PhotoCard extends StatefulWidget {
@@ -97,13 +98,17 @@ class _PhotoCardState extends State<PhotoCard> {
     });
   }
 
+  Future<void> deletePhoto() async {
+    updatePhoto(await FetchPhoto.deletePhoto(photo));
+  }
+
   void onSelected(BuildContext context, int item) {
     switch (item) {
       case 0:
         setIsEditing();
         break;
       case 1:
-        // Handle delete action
+        deletePhoto();
         break;
     }
   }

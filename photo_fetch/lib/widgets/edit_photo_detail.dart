@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:photo_fetch/enums/enums.dart';
-import 'package:photo_fetch/models/photo_model.dart';
-import 'package:photo_fetch/resources/app_sizes.dart';
+import 'package:photo_fetch/models/models.dart';
 import 'package:photo_fetch/resources/resources.dart';
 import 'package:photo_fetch/services/services.dart';
 import 'package:photo_fetch/widgets/widgets.dart';
@@ -53,16 +52,16 @@ class _EditPhotoDetailState extends State<EditPhotoDetail> {
             onChanged: (_) => onChanged(),
             decoration: AppStyles.textFieldDecoration.copyWith(
               label: const Text('Title'),
-              hintText: widget.photo.title,
+              hintText: 'Enter photo title',
             ),
-            controller: imageUrlController,
+            controller: imageTitleController,
           ),
           const SizedBox(height: PaddingSizes.sm),
           TextField(
               onChanged: (_) => onChanged(),
-              controller: imageTitleController,
+              controller: imageUrlController,
               decoration: AppStyles.textFieldDecoration.copyWith(
-                  label: const Text('Url'), hintText: widget.photo.url)),
+                  label: const Text('Url'), hintText: 'Enter photo url')),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
